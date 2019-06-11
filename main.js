@@ -11,7 +11,7 @@ const cands = query('.cands')
 // const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
 
 function getCandID (n) {
-  const promise = fetch(`https://www.opensecrets.org/api/?method=getLegislators&id=${n}&apikey=fb22899678d9793a7656d81e78055803`).then(function (response) {
+  const promise = fetch(`https://www.opensecrets.org/api/?method=getLegislators&id=${n}&apikey=fb22899678d9793a7656d81e78055803&output=json`).then(function (response) {
     if (!response.ok) {
       throw Error(response.statusText)
     }
@@ -23,7 +23,7 @@ function getCandID (n) {
 function updateID (n) {
   getCandID(n).then(function (reps) {
     cands.innerHTML = ''
-    for (let rep of reps.results) {
+    for (let rep of reps.response.legislator) {
       addRepInfo(rep)
     }
   })
@@ -34,7 +34,7 @@ function addRepInfo (name) {
 
   cands.append(repName)
 
-  repName.innerHTML = `<div>CID: "${name.legislator.cid}</div>`
+  repName.innerHTML = `<div>CID: "${name.response.legislator[0].attributes.cid}"</div>`
 }
 
 document.addEventListener('DOMContentLoaded', function () {
