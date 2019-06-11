@@ -1,3 +1,5 @@
+// using ProPublica API: https://projects.propublica.org/api-docs/campaign-finance/candidates/
+
 function query (selector) {
   return document.querySelector(selector)
 }
