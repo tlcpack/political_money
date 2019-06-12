@@ -99,10 +99,12 @@ function addCandID (name) {
 
 function addRepInfo (name) {
   let repID = document.createElement('div')
-
+  const distInfo = name.district.split("/")
+  const distState = distInfo[2]
+  
   candidate.append(repID)
   
-  repID.innerHTML = `<div>Name: ${name.name}</div>`
+  repID.innerHTML = `<div>Name: ${name.name}, ${distState}</div>`
 }
 
 function idFromState (name) {
