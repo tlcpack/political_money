@@ -11,6 +11,7 @@ function queryAll (selector) {
 const search = query('.search_button')
 const cands = query('.cand_search')
 const candidate = query('.candidates')
+const stateRep = query('.stateRep')
 // const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
 
 function getCandID (n) {
@@ -30,7 +31,23 @@ function getCandID (n) {
 }
 
 function getCand (n) {
-  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/${n}`, {
+  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/${n}.json`, {
+    method: 'GET',
+    headers: {
+      'X-API-Key': '5kMXtbKMfmdYhn87JENQ9vcAzqXDonYCYzmYZazd'
+    }
+
+  }).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  return promise
+}
+
+function candFromState (n) {
+  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/races/${n}.json`, {
     method: 'GET',
     headers: {
       'X-API-Key': '5kMXtbKMfmdYhn87JENQ9vcAzqXDonYCYzmYZazd'
@@ -55,9 +72,18 @@ function updateID (n) {
 }
 
 function candInfo (n) {
-  getCand(n).then(function (rep) {
+  getCand(n).then(function (id) {
     candidate.innerHTML = ''
-    addRepInfo(rep.results)
+    addRepInfo(id.results[0])
+  })
+}
+
+function fromState (n) {
+  candFromState(n).then(function (reps) {
+    stateRep.innerHTML = ''
+    for (let rep of reps.results) {
+      addCandID(rep)
+    }
   })
 }
 
@@ -70,16 +96,27 @@ function addCandID (name) {
 }
 
 function addRepInfo (name) {
-  let rep = document.createElement('div')
+  let repID = document.createElement('div')
 
-  candidate.append(rep)
-  console.log(candidate);
-  rep.innerHTML = `<div>Name: ${name.first_name}</div>`
+  candidate.append(repID)
+  
+  repID.innerHTML = `<div>Name: ${name.first_name}</div>`
+}
+
+function idFromState (name) {
+  let repState = document.createElement('div')
+
+  stateRep.append(repState)
+
+  repState.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   query('.cand_id').addEventListener('change', function (e) {
     updateID(event.target.value)
+  })
+  query('.state').addEventListener('change', function (e) {
+    fromState(event.target.value)
   })
   query('.candidate').addEventListener('change', function (e) {
     candInfo(event.target.value)
