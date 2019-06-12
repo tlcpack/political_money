@@ -59,6 +59,7 @@ function candFromState (n) {
     }
     return response.json()
   })
+  
   return promise
 }
 
@@ -82,7 +83,7 @@ function fromState (n) {
   candFromState(n).then(function (reps) {
     stateRep.innerHTML = ''
     for (let rep of reps.results) {
-      addCandID(rep)
+      idFromState(rep)
     }
   })
 }
