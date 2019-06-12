@@ -9,8 +9,8 @@ function queryAll (selector) {
 }
 
 const search = query('.search_button')
-const cands = query('.cand_id')
-const candidate = query('.candidate')
+const cands = query('.cand_search')
+const candidate = query('.candidates')
 // const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
 
 function getCandID (n) {
