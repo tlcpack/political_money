@@ -43,6 +43,7 @@ function getCand (n) {
     }
     return response.json()
   })
+  console.log(promise)
   return promise
 }
 
@@ -101,7 +102,7 @@ function addRepInfo (name) {
 
   candidate.append(repID)
   
-  repID.innerHTML = `<div>Name: ${name.first_name}</div>`
+  repID.innerHTML = `<div>Name: ${name.name}</div>`
 }
 
 function idFromState (name) {
