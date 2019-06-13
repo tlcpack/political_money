@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+}
+
+.politics {
+    width: 40%;
+}
+
+.map_box {
+    width: 40%;
+}
