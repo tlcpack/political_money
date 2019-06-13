@@ -14,6 +14,10 @@ const candidate = query('.candidates')
 const stateRep = query('.stateRep')
 // const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 function getCandID (n) {
   const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=${n}`, {
     method: 'GET',
@@ -60,7 +64,7 @@ function candFromState (n) {
     }
     return response.json()
   })
-  
+
   return promise
 }
 
@@ -99,13 +103,17 @@ function addCandID (name) {
 
 function addRepInfo (name) {
   let repID = document.createElement('div')
-  const repInfo = name.district.split("/")
+  if (name.district === null) {
+    repID.innerHTML = '<div>Info not found, please re-search</div>'
+
+  } 
+  const repInfo = name.district.split('/')
   const distState = repInfo[2]
-  const repDistrict = repInfo[4].substr(0, 2) 
+  const repDistrict = repInfo[4].substr(0, 2)
 
   candidate.append(repID)
-  
-  repID.innerHTML = `<div>Name: ${name.name}, ${distState}-${repDistrict}</div>`
+
+  repID.innerHTML = `<div>Name: ${name.name}, ${distState}-${repDistrict}</div><div><br>Contributions from individuals: $${numberWithCommas(name.total_from_individuals)}<br>Contributions from PACs: $${numberWithCommas(name.total_from_pacs)}</div>`
 }
 
 function idFromState (name) {
