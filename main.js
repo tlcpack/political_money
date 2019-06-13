@@ -1,4 +1,6 @@
 // using ProPublica API: https://projects.propublica.org/api-docs/campaign-finance/candidates/
+// key: 5kMXtbKMfmdYhn87JENQ9vcAzqXDonYCYzmYZazd
+// Google maps api key: AIzaSyBz155-bRr2_uAAeK5ftNH8tFZMaM6TBAc
 
 function query (selector) {
   return document.querySelector(selector)
