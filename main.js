@@ -84,7 +84,7 @@ function getDonors (n) {
     }
     return response.json()
   })
-
+  console.log(promise)
   return promise
 }
 
@@ -93,15 +93,6 @@ function updateID (n) {
     cands.innerHTML = ''
     for (let rep of reps.results) {
       addCandID(rep)
-    }
-  })
-}
-
-function listDonors (n) {
-  getDonors(n).then(function (orgs) {
-    donors.innerHTML = '';
-    for (let org of orgs.results) {
-      addDonors(org)
     }
   })
 }
@@ -118,6 +109,15 @@ function fromState (n) {
     stateRep.innerHTML = ''
     for (let rep of reps.results) {
       idFromState(rep)
+    }
+  })
+}
+
+function listDonors (n) {
+  getDonors(n).then(function (orgs) {
+    donors.innerHTML = ''
+    for (let org of orgs.results) {
+      addDonors(org)
     }
   })
 }
@@ -157,7 +157,7 @@ function addDonors (name) {
 
   donors.append(candDonor)
 
-  candDonor.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`
+  candDonor.innerHTML = `<div>Name: ${name.fec_committee_name}</div>`
 }
 
 function initMap () {
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
   query('.candidate').addEventListener('change', function (e) {
     candInfo(event.target.value)
   })
-  query('.candidate').addEventListener('change', function (e) {
+  query('.donor').addEventListener('change', function (e) {
     listDonors(event.target.value)
   })
 })
