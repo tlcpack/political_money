@@ -14,6 +14,7 @@ const search = query('.search_button')
 const cands = query('.cand_search')
 const candidate = query('.candidates')
 const stateRep = query('.stateRep')
+const donors = query('.donors')
 // const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
 
 function numberWithCommas (x) {
@@ -70,11 +71,37 @@ function candFromState (n) {
   return promise
 }
 
+function getDonors (n) {
+  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/${n}/independent_expenditures.json`, {
+    method: 'GET',
+    headers: {
+      'X-API-Key': '5kMXtbKMfmdYhn87JENQ9vcAzqXDonYCYzmYZazd'
+    }
+
+  }).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+
+  return promise
+}
+
 function updateID (n) {
   getCandID(n).then(function (reps) {
     cands.innerHTML = ''
     for (let rep of reps.results) {
       addCandID(rep)
+    }
+  })
+}
+
+function listDonors (n) {
+  getDonors(n).then(function (orgs) {
+    donors.innerHTML = '';
+    for (let org of orgs.results) {
+      addDonors(org)
     }
   })
 }
@@ -125,6 +152,14 @@ function idFromState (name) {
   repState.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`
 }
 
+function addDonors (name) {
+  let candDonor = document.createElement('div')
+
+  donors.append(candDonor)
+
+  candDonor.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`
+}
+
 function initMap () {
   var durham = { lat: 35.994, lng: -78.899 }
   var map = new google.maps.Map(
@@ -132,7 +167,7 @@ function initMap () {
   var marker = new google.maps.Marker({ position: durham, map: map })
 }
 
-document.addEventListener('DOMContentLoaded', initMap)
+// document.addEventListener('DOMContentLoaded', initMap)
 document.addEventListener('DOMContentLoaded', function () {
   query('.cand_id').addEventListener('change', function (e) {
     updateID(event.target.value)
@@ -142,5 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
   })
   query('.candidate').addEventListener('change', function (e) {
     candInfo(event.target.value)
+  })
+  query('.candidate').addEventListener('change', function (e) {
+    listDonors(event.target.value)
   })
 })
