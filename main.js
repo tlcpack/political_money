@@ -16,8 +16,8 @@ const candidate = query('.candidates')
 const stateRep = query('.stateRep')
 // const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+function numberWithCommas (x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 function getCandID (n) {
@@ -107,8 +107,7 @@ function addRepInfo (name) {
   let repID = document.createElement('div')
   if (name.district === null) {
     repID.innerHTML = '<div>Info not found, please re-search</div>'
-
-  } 
+  }
   const repInfo = name.district.split('/')
   const distState = repInfo[2]
   const repDistrict = repInfo[4].substr(0, 2)
@@ -126,6 +125,14 @@ function idFromState (name) {
   repState.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`
 }
 
+function initMap () {
+  var durham = { lat: 35.994, lng: -78.899 }
+  var map = new google.maps.Map(
+    document.getElementById('map'), { zoom: 4, center: durham })
+  var marker = new google.maps.Marker({ position: durham, map: map })
+}
+
+document.addEventListener('DOMContentLoaded', initMap)
 document.addEventListener('DOMContentLoaded', function () {
   query('.cand_id').addEventListener('change', function (e) {
     updateID(event.target.value)
