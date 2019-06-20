@@ -117,9 +117,7 @@ function listDonors (n) {
   getDonors(n).then(function (orgs) {
     donors.innerHTML = ''
     for (let org of orgs.results) {
-      if org.results.support_or_oppose = "O"{
         addDonors(org)
-      }
     }
   })
 }
@@ -165,11 +163,32 @@ function addDonors (name) {
 function initMap () {
   var durham = { lat: 35.994, lng: -78.899 }
   var map = new google.maps.Map(
-    document.getElementById('map'), { zoom: 4, center: durham })
+    document.getElementById('map'), { zoom: 6, center: durham })
   var marker = new google.maps.Marker({ position: durham, map: map })
+
+  var geocoder = new google.maps.Geocoder();
+
+  document.getElementById('submit').addEventListener('click', function() {
+    geocodeAddress(geocoder, map);
+  });
 }
 
-// document.addEventListener('DOMContentLoaded', initMap)
+function geocodeAddress(geocoder, resultsMap) {
+  var address = document.getElementById('address').value;
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === 'OK') {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initMap)
 document.addEventListener('DOMContentLoaded', function () {
   query('.cand_id').addEventListener('change', function (e) {
     updateID(event.target.value)
