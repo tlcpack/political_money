@@ -67,7 +67,7 @@ function candFromState (n) {
     }
     return response.json()
   })
-
+  console.log(promise);
   return promise
 }
 
