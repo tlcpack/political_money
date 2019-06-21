@@ -67,7 +67,7 @@ function candFromState (n) {
     }
     return response.json()
   })
-  console.log(promise);
+  console.log(promise)
   return promise
 }
 
@@ -117,11 +117,10 @@ function listDonors (n) {
   getDonors(n).then(function (orgs) {
     donors.innerHTML = ''
     for (let org of orgs.results) {
-        console.log(org.support_or_oppose)
-        if (org.support_or_oppose === "O") {
-          addDonors(org);
-        }
-        
+      console.log(org.support_or_oppose)
+      if (org.support_or_oppose === 'O') {
+        addDonors(org)
+      }
     }
   })
 }
@@ -170,26 +169,26 @@ function initMap () {
     document.getElementById('map'), { zoom: 6, center: durham })
   var marker = new google.maps.Marker({ position: durham, map: map })
 
-  var geocoder = new google.maps.Geocoder();
+  var geocoder = new google.maps.Geocoder()
 
-  document.getElementById('submit').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);
-  });
+  document.getElementById('submit').addEventListener('click', function () {
+    geocodeAddress(geocoder, map)
+  })
 }
 
-function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({'address': address}, function(results, status) {
+function geocodeAddress (geocoder, resultsMap) {
+  var address = document.getElementById('address').value
+  geocoder.geocode({ 'address': address }, function (results, status) {
     if (status === 'OK') {
-      resultsMap.setCenter(results[0].geometry.location);
+      resultsMap.setCenter(results[0].geometry.location)
       var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location
-      });
+      })
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      alert('Geocode was not successful for the following reason: ' + status)
     }
-  });
+  })
 }
 
 document.addEventListener('DOMContentLoaded', initMap)
