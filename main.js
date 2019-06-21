@@ -117,7 +117,11 @@ function listDonors (n) {
   getDonors(n).then(function (orgs) {
     donors.innerHTML = ''
     for (let org of orgs.results) {
-        addDonors(org)
+        console.log(org.support_or_oppose)
+        if (org.support_or_oppose === "O") {
+          addDonors(org);
+        }
+        
     }
   })
 }
