@@ -7,8 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.candidates{
+.candidates {
   list-style: none;
+}
+
+.search {
+  margin: 1rem;
 }
 
 code {
