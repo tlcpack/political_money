@@ -2,8 +2,8 @@ import React from 'react'
 import Suggestions from './components/Suggestions'
 import './App.css'
 
-const API_URL = 'https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query='
-const {API_KEY} = process.env
+require('dotenv').config()
+const API_KEY = process.env.REACT_APP_DEV_API_KEY
 
 // using https://dev.to/sage911/how-to-write-a-search-component-with-suggestions-in-react-d20
 class Search extends React.Component {
@@ -18,7 +18,7 @@ class Search extends React.Component {
     fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=${this.state.query}`, {
       method: 'GET',
       headers: {
-        'X-API-Key': '5kMXtbKMfmdYhn87JENQ9vcAzqXDonYCYzmYZazd'
+        'X-API-Key': `${API_KEY}`
       }
     })
       .then(res => res.json())
