@@ -1,5 +1,5 @@
 // using ProPublica API: https://projects.propublica.org/api-docs/campaign-finance/candidates/
-// key: 5kMXtbKMfmdYhn87JENQ9vcAzqXDonYCYzmYZazd
+
 // Google maps api key: AIzaSyBz155-bRr2_uAAeK5ftNH8tFZMaM6TBAc
 
 function query (selector) {
@@ -25,7 +25,7 @@ function getCandID (n) {
   const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/search.json?query=${n}`, {
     method: 'GET',
     headers: {
-      'X-API-Key': 'PropublicaAPI'
+      'X-API-Key': PropublicaAPI
     }
 
   }).then(function (response) {
@@ -41,7 +41,7 @@ function getCand (n) {
   const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/${n}.json`, {
     method: 'GET',
     headers: {
-      'X-API-Key': 'PropublicaAPI'
+      'X-API-Key': PropublicaAPI
     }
 
   }).then(function (response) {
@@ -58,7 +58,7 @@ function candFromState (n) {
   const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/races/${n}.json`, {
     method: 'GET',
     headers: {
-      'X-API-Key': 'PropublicaAPI'
+      'X-API-Key': PropublicaAPI
     }
 
   }).then(function (response) {
@@ -75,7 +75,7 @@ function getDonors (n) {
   const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/candidates/${n}/independent_expenditures.json`, {
     method: 'GET',
     headers: {
-      'X-API-Key': 'PropublicaAPI'
+      'X-API-Key': PropublicaAPI
     }
 
   }).then(function (response) {
@@ -118,7 +118,7 @@ function listDonors (n) {
     donors.innerHTML = ''
     for (let org of orgs.results) {
       console.log(org.support_or_oppose)
-      if (org.support_or_oppose === 'O') {
+      if (org.support_or_oppose === 'S') {
         addDonors(org)
       }
     }
