@@ -16,7 +16,7 @@ const candidate = query('.candidates')
 const stateRep = query('.stateRep')
 const donors = query('.donors')
 const committees = query('.committees')
-
+const zips = query('.zips')
 
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -89,6 +89,23 @@ function getDonors (n) {
   return promise
 }
 
+function getDonorDetails (n) {
+  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016${n}`, {
+    method: 'GET',
+    headers: {
+      'X-API-Key': PropublicaAPI
+    }
+
+  }).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  console.log(promise)
+  return promise
+}
+
 function updateID (n) {
   getCandID(n).then(function (reps) {
     cands.innerHTML = ''
@@ -128,17 +145,44 @@ function listDonors (n) {
 function getDonorId (n) {
   getDonors(n).then(function (orgs) {
     let idList = []
+    committees.innerHTML = ''
     for (let org of orgs.results) {
       if (org.support_or_oppose === 'S') {
-        console.log(org.fec_committee)
         idList.push(org.fec_committee)
         showDonorId(org)
       }
     }
-    console.log(idList)
+    for (let id of idList) {
+      getDonorDetails(n).then(function (org) {
+        showDonorZip(id)
+      }) 
+    } 
     return idList
   })
 }
+
+// function getDonorIdArray (n) {
+//   let x = getDonors(n).then(function (orgs) {
+//     let idList = []
+//     for (let org of orgs.results) {
+//       if (org.support_or_oppose === 'S') {
+//         idList.push(org.fec_committee)
+//       }
+//     }
+//     return idList
+//   })
+//   console.log(x)
+// }
+
+// function listDonorZip (n) {
+//   let arr = getDonorIdArray(n)
+//   console.log(arr)
+//   for (let id of arr) {
+//     getDonorDetails(n).then(function (org) {
+//       showDonorZip(id)
+//     }) 
+//   }  
+// }
 
 function addCandID (name) {
   let repName = document.createElement('div')
@@ -186,6 +230,14 @@ function showDonorId (name) {
   donorId.innerHTML = `<div>Committee ID: ${name.fec_committee}</div>`
 }
 
+function showDonorZip (name) {
+  let donorZip = document.createElement('div')
+
+  zips.append(donorZip)
+
+  donorZip.innerHTML = `<div>Donor Zip: ${name.zip}</div>`
+}
+
 function initMap () {
   var durham = { lat: 35.994, lng: -78.899 }
   var map = new google.maps.Map(
@@ -229,6 +281,9 @@ document.addEventListener('DOMContentLoaded', function () {
     listDonors(event.target.value)
   })
   query('.committee').addEventListener('change', function (e) {
+    getDonorId(event.target.value)
+  })
+  query('.zip').addEventListener('change', function (e) {
     getDonorId(event.target.value)
   })
 })
