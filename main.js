@@ -15,7 +15,8 @@ const cands = query('.cand_search')
 const candidate = query('.candidates')
 const stateRep = query('.stateRep')
 const donors = query('.donors')
-// const candApi = 'http://www.opensecrets.org/api/?method=candSummary&cid=N00007360&cycle=2018&apikey=fb22899678d9793a7656d81e78055803'
+const committees = query('.committees')
+
 
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -117,11 +118,25 @@ function listDonors (n) {
   getDonors(n).then(function (orgs) {
     donors.innerHTML = ''
     for (let org of orgs.results) {
-      console.log(org.support_or_oppose)
       if (org.support_or_oppose === 'S') {
         addDonors(org)
       }
     }
+  })
+}
+
+function getDonorId (n) {
+  getDonors(n).then(function (orgs) {
+    let idList = []
+    for (let org of orgs.results) {
+      if (org.support_or_oppose === 'S') {
+        console.log(org.fec_committee)
+        idList.push(org.fec_committee)
+        showDonorId(org)
+      }
+    }
+    console.log(idList)
+    return idList
   })
 }
 
@@ -161,6 +176,14 @@ function addDonors (name) {
   donors.append(candDonor)
 
   candDonor.innerHTML = `<div>Name: ${name.fec_committee_name}</div>`
+}
+
+function showDonorId (name) {
+  let donorId = document.createElement('div')
+
+  committees.append(donorId)
+
+  donorId.innerHTML = `<div>Committee ID: ${name.fec_committee}</div>`
 }
 
 function initMap () {
@@ -204,5 +227,8 @@ document.addEventListener('DOMContentLoaded', function () {
   })
   query('.donor').addEventListener('change', function (e) {
     listDonors(event.target.value)
+  })
+  query('.committee').addEventListener('change', function (e) {
+    getDonorId(event.target.value)
   })
 })
