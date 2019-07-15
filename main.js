@@ -152,11 +152,11 @@ function getDonorId (n) {
         showDonorId(org)
       }
     }
-    for (let id of idList) {
-      getDonorDetails(n).then(function (org) {
-        showDonorZip(id)
-      }) 
-    } 
+    // for (let id of idList) {
+    //   getDonorDetails(n).then(function (org) {
+    //     showDonorZip(id)
+    //   }) 
+    // } 
     return idList
   })
 }
@@ -224,10 +224,16 @@ function addDonors (name) {
 
 function showDonorId (name) {
   let donorId = document.createElement('div')
+  const cmteInfo = name.fec_committee.split('/')
+  const cmteFile = cmteInfo[2]
+  const cmteArray = cmteFile.split('.')
+  const cmteId = cmteArray[0]
 
+
+  console.log(cmteArray, cmteId)
   committees.append(donorId)
 
-  donorId.innerHTML = `<div>Committee ID: ${name.fec_committee}</div>`
+  donorId.innerHTML = `<div>Committee ID: ${cmteId}</div>`
 }
 
 function showDonorZip (name) {
