@@ -90,7 +90,7 @@ function getDonors (n) {
 }
 
 function getDonorDetails (n) {
-  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016${n}`, {
+  const promise = fetch(`https://api.propublica.org/campaign-finance/v1/2016/committees/${n}.json`, {
     method: 'GET',
     headers: {
       'X-API-Key': PropublicaAPI
@@ -102,7 +102,6 @@ function getDonorDetails (n) {
     }
     return response.json()
   })
-  console.log(promise)
   return promise
 }
 
@@ -155,8 +154,8 @@ function getDonorId (n) {
     // for (let id of idList) {
     //   getDonorDetails(n).then(function (org) {
     //     showDonorZip(id)
-    //   }) 
-    // } 
+    //   })
+    // }
     return idList
   })
 }
@@ -174,15 +173,12 @@ function getDonorId (n) {
 //   console.log(x)
 // }
 
-// function listDonorZip (n) {
-//   let arr = getDonorIdArray(n)
-//   console.log(arr)
-//   for (let id of arr) {
-//     getDonorDetails(n).then(function (org) {
-//       showDonorZip(id)
-//     }) 
-//   }  
-// }
+function listDonorZip (n) {
+  getDonorDetails(n).then(function (cmte) {
+    zips.innerHTML = ''
+    showDonorZip(cmte.results[0])
+  })
+}
 
 function addCandID (name) {
   let repName = document.createElement('div')
@@ -228,7 +224,6 @@ function showDonorId (name) {
   const cmteFile = cmteInfo[2]
   const cmteArray = cmteFile.split('.')
   const cmteId = cmteArray[0]
-
 
   console.log(cmteArray, cmteId)
   committees.append(donorId)
@@ -289,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
   query('.candidate').addEventListener('change', function (e) {
     getDonorId(event.target.value)
   })
-  query('.candidate').addEventListener('change', function (e) {
-    getDonorId(event.target.value)
+  query('.zip').addEventListener('change', function (e) {
+    listDonorZip(event.target.value)
   })
 })
