@@ -283,13 +283,13 @@ document.addEventListener('DOMContentLoaded', function () {
   query('.candidate').addEventListener('change', function (e) {
     candInfo(event.target.value)
   })
-  query('.donor').addEventListener('change', function (e) {
+  query('.candidate').addEventListener('change', function (e) {
     listDonors(event.target.value)
   })
-  query('.committee').addEventListener('change', function (e) {
+  query('.candidate').addEventListener('change', function (e) {
     getDonorId(event.target.value)
   })
-  query('.zip').addEventListener('change', function (e) {
+  query('.candidate').addEventListener('change', function (e) {
     getDonorId(event.target.value)
   })
 })
