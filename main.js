@@ -51,7 +51,6 @@ function getCand (n) {
     }
     return response.json()
   })
-  console.log(promise)
   return promise
 }
 
@@ -68,7 +67,6 @@ function candFromState (n) {
     }
     return response.json()
   })
-  console.log(promise)
   return promise
 }
 
@@ -85,7 +83,6 @@ function getDonors (n) {
     }
     return response.json()
   })
-  console.log(promise)
   return promise
 }
 
@@ -132,6 +129,7 @@ function fromState (n) {
 
 function listDonors (n) {
   getDonors(n).then(function (orgs) {
+    cands.innerHTML = ''
     donors.innerHTML = ''
     for (let org of orgs.results) {
       if (org.support_or_oppose === 'S') {
@@ -225,7 +223,6 @@ function showDonorId (name) {
   const cmteArray = cmteFile.split('.')
   const cmteId = cmteArray[0]
 
-  console.log(cmteArray, cmteId)
   committees.append(donorId)
 
   donorId.innerHTML = `<div>Committee ID: ${cmteId}</div>`
@@ -237,6 +234,7 @@ function showDonorZip (name) {
   zips.append(donorZip)
 
   donorZip.innerHTML = `<div>Donor Zip: ${name.zip}</div>`
+  // geocodeAddress(geocoder, name.zip)
 }
 
 function initMap () {
