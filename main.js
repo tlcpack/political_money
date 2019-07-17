@@ -249,6 +249,7 @@ function initMap () {
     geocodeAddress(geocoder, map)
   })
   
+  //map recenter not working yet, trying to use fitbounds
   var bounds = new google.maps.LatLngBounds();
   bounds.extend(marker);
   bounds.extend(document.getElementById('address').value);
