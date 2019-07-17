@@ -242,14 +242,20 @@ function initMap () {
   var map = new google.maps.Map(
     document.getElementById('map'), { zoom: 6, center: durham })
   var marker = new google.maps.Marker({ position: durham, map: map })
-
+  
   var geocoder = new google.maps.Geocoder()
 
   document.getElementById('submit').addEventListener('click', function () {
     geocodeAddress(geocoder, map)
   })
+  
+  var bounds = new google.maps.LatLngBounds();
+  bounds.extend(marker);
+  bounds.extend(document.getElementById('address').value);
+  map.fitBounds(bounds);
 }
 
+// Geocode code from: https://stackoverflow.com/questions/11147803/how-to-use-zip-code-instead-lat-and-lng-in-google-maps-api
 function geocodeAddress (geocoder, resultsMap) {
   var address = document.getElementById('address').value
   geocoder.geocode({ 'address': address }, function (results, status) {
