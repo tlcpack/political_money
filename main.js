@@ -240,7 +240,7 @@ function showDonorZip (name) {
 function initMap () {
   var durham = { lat: 35.994, lng: -78.899 }
   var map = new google.maps.Map(
-    document.getElementById('map'), { zoom: 6, center: durham })
+    document.getElementById('map'), { zoom: 5, center: durham })
   var marker = new google.maps.Marker({ position: durham, map: map })
   
   var geocoder = new google.maps.Geocoder()
@@ -274,7 +274,7 @@ function geocodeAddress (geocoder, resultsMap) {
 
 document.addEventListener('DOMContentLoaded', initMap)
 document.addEventListener('DOMContentLoaded', function () {
-  query('.cand_id').addEventListener('change', function (e) {
+  query('.cand_id').addEventListener('keyup', function (e) {
     updateID(event.target.value)
   })
   query('.state').addEventListener('change', function (e) {
