@@ -35,6 +35,23 @@ function getCandID(n) {
   return promise
 }
 
+function getCongressID(n) {
+  const promise = fetch(
+    `https://api.propublica.org/congress/v1/2016/candidates/search.json?query=${n}`, {
+      method: "GET",
+      headers: {
+        'X-API-Key': 'LJgQYwDfuk9k4KkmrZj1DcbU6AJ5nawhLGaiN5oM',
+      },
+    }
+  ).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  return promise
+}
+
 function getCandFinanceInfo(n) {
   const promise = fetch(
     `https://api.propublica.org/campaign-finance/v1/2016/candidates/${n}.json`, {
@@ -105,7 +122,7 @@ function getCandidateDetails(n) {
 }
 
 function updateID(n) {
-  getCandID(n).then(function (reps) {
+  getCongressID(n).then(function (reps) {
     cands.innerHTML = ''
     for (let rep of reps.results) {
       addCandID(rep)
