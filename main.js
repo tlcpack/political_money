@@ -12,7 +12,7 @@ const stateRep = query(".stateRep")
 const donors = query(".donors")
 const committees = query(".committees")
 const zips = query(".zips")
-const social = query('social')
+const social = query('.social')
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -108,7 +108,7 @@ function getCandidateDetails(n) {
     `https://api.propublica.org/congress/v1/members/${n}.json`, {
       method: 'GET',
       headers: {
-        "X-API-Key": 'LJgQYwDfuk9k4KkmrZj1DcbU6AJ5nawhLGaiN5oM',
+        'X-API-Key': 'LJgQYwDfuk9k4KkmrZj1DcbU6AJ5nawhLGaiN5oM',
       },
     }
   ).then(function (response) {
@@ -117,7 +117,6 @@ function getCandidateDetails(n) {
     }
     return response.json()
   })
-  console.log(promise)
   return promise
 }
 
@@ -160,7 +159,8 @@ function listDonors(n) {
 
 function showCandidateDetails(n) {
   getCandidateDetails(n).then(function (id) {
-    addSocial(id)
+    console.log(id.results[0].facebook_account)
+    addSocial(id.results[0])
   })
 }
 
