@@ -135,47 +135,19 @@ function updateID(n) {
   });
 }
 
-function candInfo(n) {
-  getCandFinanceInfo(n).then(function (id) {
-    candidate.innerHTML = "";
-    addRepInfo(id.results[0]);
-  });
-}
-
-function fromState(n) {
-  candFromState(n).then(function (reps) {
-    stateRep.innerHTML = "";
-    for (let rep of reps.results) {
-      idFromState(rep);
-    }
-  });
-}
-
-function listDonors(n) {
-  getDonors(n).then(function (orgs) {
-    cands.innerHTML = "";
-    donors.innerHTML = "";
-    for (let org of orgs.results) {
-      if (org.support_or_oppose === "S") {
-        addDonors(org);
-      }
-    }
-  });
-}
-
-function showCandidateDetails(n) {
-  getCandidateDetails(n).then(function (id) {
-    console.log(id.results[0].facebook_account);
-    addSocial(id.results[0]);
-  });
-}
-
 function addCandID(name) {
   let repName = document.createElement("div");
 
   cands.append(repName);
 
   repName.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`;
+}
+
+function candInfo(n) {
+  getCandFinanceInfo(n).then(function (id) {
+    candidate.innerHTML = "";
+    addRepInfo(id.results[0]);
+  });
 }
 
 function addRepInfo(name) {
@@ -198,6 +170,15 @@ function addRepInfo(name) {
   )}</div>`;
 }
 
+function fromState(n) {
+  candFromState(n).then(function (reps) {
+    stateRep.innerHTML = "";
+    for (let rep of reps.results) {
+      idFromState(rep);
+    }
+  });
+}
+
 function idFromState(name) {
   let repState = document.createElement("div");
 
@@ -206,12 +187,31 @@ function idFromState(name) {
   repState.innerHTML = `<div>Name: ${name.candidate.name}, CID: ${name.candidate.id}</div>`;
 }
 
+function listDonors(n) {
+  getDonors(n).then(function (orgs) {
+    cands.innerHTML = "";
+    donors.innerHTML = "";
+    for (let org of orgs.results) {
+      if (org.support_or_oppose === "S") {
+        addDonors(org);
+      }
+    }
+  });
+}
+
 function addDonors(name) {
   let candDonor = document.createElement("div");
 
   donors.append(candDonor);
 
   candDonor.innerHTML = `<div>Name: ${name.fec_committee_name}</div>`;
+}
+
+function showCandidateDetails(n) {
+  getCandidateDetails(n).then(function (id) {
+    console.log(id.results[0].facebook_account);
+    addSocial(id.results[0]);
+  });
 }
 
 function addSocial(name) {
