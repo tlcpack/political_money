@@ -215,7 +215,7 @@ function showCandidateDetails(n) {
 
 function addSocial(name) {
   let candSocial = document.createElement("div");
-
+  social.innerHTML = "";
   social.append(candSocial);
 
   candSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
