@@ -126,6 +126,25 @@ function getCandidateDetails(n) {
   return promise;
 }
 
+function getAllHouse() {
+  const promise = fetch(
+    `https://api.propublica.org/congress/v1/116/house/members.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-API-Key": "LJgQYwDfuk9k4KkmrZj1DcbU6AJ5nawhLGaiN5oM",
+      },
+    }
+  ).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response.json();
+  });
+  console.log(promise)
+  return promise;
+}
+
 function updateID(n) {
   getCongressID(n).then(function (reps) {
     cands.innerHTML = "";
@@ -219,6 +238,12 @@ function addSocial(name) {
   social.append(candSocial);
 
   candSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
+}
+
+function findHouseRep(state) {
+  getAllHouse().then(function (state) {
+    return console.log('True')
+  })
 }
 
 document.addEventListener("DOMContentLoaded", function () {
