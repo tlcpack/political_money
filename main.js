@@ -209,7 +209,6 @@ function addDonors(name) {
 
 function showCandidateDetails(n) {
   getCandidateDetails(n).then(function (id) {
-    console.log(id.results[0].facebook_account);
     addSocial(id.results[0]);
   });
 }
