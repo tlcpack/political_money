@@ -241,10 +241,10 @@ function addSocial(name) {
   candSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
 }
 
-function findHouseRep(all) {
+function findHouseRep(state) {
   getAllHouse().then(function (all) {
     for (let member of all.results[0].members) {
-      if (member.state === "NC") {
+      if (member.state === state.toUpperCase()) {
         console.log(member);
       }
     }
