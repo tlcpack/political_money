@@ -13,6 +13,7 @@ const donors = query(".donors");
 const committees = query(".committees");
 const zips = query(".zips");
 const social = query(".social");
+const houseReps = query(".houseReps");
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -141,7 +142,7 @@ function getAllHouse() {
     }
     return response.json();
   });
-  console.log(promise)
+  console.log(promise);
   return promise;
 }
 
@@ -189,14 +190,14 @@ function addRepInfo(name) {
   )}</div>`;
 }
 
-function fromState(n) {
-  candFromState(n).then(function (reps) {
-    stateRep.innerHTML = "";
-    for (let rep of reps.results) {
-      idFromState(rep);
-    }
-  });
-}
+// function fromState(n) {
+//   candFromState(n).then(function (reps) {
+//     stateRep.innerHTML = "";
+//     for (let rep of reps.results) {
+//       idFromState(rep);
+//     }
+//   });
+// }
 
 function idFromState(name) {
   let repState = document.createElement("div");
@@ -240,10 +241,14 @@ function addSocial(name) {
   candSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
 }
 
-function findHouseRep(state) {
-  getAllHouse().then(function (state) {
-    return console.log('True')
-  })
+function findHouseRep(all) {
+  getAllHouse().then(function (all) {
+    for (let member of all.results[0].members) {
+      if (member.state === "NC") {
+        console.log(member);
+      }
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -261,5 +266,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   query(".candidate").addEventListener("change", function (e) {
     showCandidateDetails(event.target.value);
+  });
+  query(".state").addEventListener("change", function (e) {
+    findHouseRep(event.target.value);
   });
 });
