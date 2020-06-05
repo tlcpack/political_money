@@ -110,24 +110,6 @@ function getDonors(n) {
   return promise;
 }
 
-function getCandidateDetails(n) {
-  const promise = fetch(
-    `https://api.propublica.org/congress/v1/members/${n}.json`,
-    {
-      method: "GET",
-      headers: {
-        "X-API-Key": "LJgQYwDfuk9k4KkmrZj1DcbU6AJ5nawhLGaiN5oM",
-      },
-    }
-  ).then(function (response) {
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response.json();
-  });
-  return promise;
-}
-
 function getAllHouse() {
   const promise = fetch(
     `https://api.propublica.org/congress/v1/116/house/members.json`,
@@ -244,20 +226,6 @@ function addDonors(name) {
   donors.append(candDonor);
 
   candDonor.innerHTML = `<div>Name: ${name.fec_committee_name}</div>`;
-}
-
-function showCandidateDetails(n) {
-  getCandidateDetails(n).then(function (id) {
-    addSocial(id.results[0]);
-  });
-}
-
-function addSocial(name) {
-  let repSocial = document.createElement("div");
-  social.innerHTML = "";
-  social.append(repSocial);
-
-  repSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
 }
 
 function addRepName(rep) {
