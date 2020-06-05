@@ -14,6 +14,7 @@ const committees = query(".committees");
 const zips = query(".zips");
 const social = query(".social");
 const houseReps = query(".houseReps");
+const repDetails = query(".repDetails");
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -142,6 +143,24 @@ function getAllHouse() {
     }
     return response.json();
   });
+  return promise;
+}
+
+function getSpecificHouseMember(n) {
+  const promise = fetch(
+    `https://api.propublica.org/congress/v1/members/${n}.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-API-Key": "LJgQYwDfuk9k4KkmrZj1DcbU6AJ5nawhLGaiN5oM",
+      },
+    }
+  ).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response.json();
+  });
   console.log(promise);
   return promise;
 }
@@ -245,18 +264,31 @@ function addRepName(rep) {
   let repName = document.createElement('div');
   houseReps.append(repName);
 
-  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name}`
+  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - ${rep.id}</div>`
 }
 
 function findHouseRep(state) {
   getAllHouse().then(function (reps) {
     for (let rep of reps.results[0].members) {
       if (rep.state === state.toUpperCase()) {
-        // console.log(rep);
         addRepName(rep);
       }
     }
   });
+}
+
+function addRepDetails(rep) {
+  let repInfo = document.createElement('div');
+  repDetails.innerHTML = '';
+  repDetails.append(repInfo);
+
+  repInfo.innerHTML = `<div>${rep.facebook_account}<div>`
+}
+
+function showRepDetails(n) {
+  getSpecificHouseMember(n).then(function (id) {
+    addRepDetails(id.results[0]);
+  })
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -266,16 +298,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // query(".state").addEventListener("change", function (e) {
   //   fromState(event.target.value);
   // });
-  query(".candidate").addEventListener("change", function (e) {
-    candInfo(event.target.value);
-  });
-  query(".candidate").addEventListener("change", function (e) {
-    listDonors(event.target.value);
-  });
-  query(".candidate").addEventListener("change", function (e) {
-    showCandidateDetails(event.target.value);
-  });
+  // query(".candidate").addEventListener("change", function (e) {
+  //   candInfo(event.target.value);
+  // });
+  // query(".candidate").addEventListener("change", function (e) {
+  //   listDonors(event.target.value);
+  // });
+  // query(".candidate").addEventListener("change", function (e) {
+  //   showCandidateDetails(event.target.value);
+  // });
   query(".state").addEventListener("change", function (e) {
     findHouseRep(event.target.value);
+  });
+  query(".repDetail").addEventListener("change", function (e) {
+    showRepDetails(event.target.value);
   });
 });
