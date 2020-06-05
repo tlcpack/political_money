@@ -244,6 +244,7 @@ function addRepName(rep) {
 function findHouseRep(state) {
   getAllHouse().then(function (reps) {
     houseReps.innerHTML = '';
+    repDetails.innerHTML = '';
     for (let rep of reps.results[0].members) {
       if (rep.state === state.toUpperCase()) {
         addRepName(rep);
@@ -271,9 +272,9 @@ function showRepDetails(n) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  query(".cand_id").addEventListener("keyup", function (e) {
-    updateID(event.target.value);
-  });
+  // query(".cand_id").addEventListener("keyup", function (e) {
+  //   updateID(event.target.value);
+  // });
   // query(".state").addEventListener("change", function (e) {
   //   fromState(event.target.value);
   // });
