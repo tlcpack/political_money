@@ -231,12 +231,19 @@ function addDonors(name) {
 function addRepName(rep) {
   let repName = document.createElement('div');
   houseReps.append(repName);
+  const repId = rep.id;
+
+  repName.onclick = function () {
+    showRepDetails(repId);
+  };
 
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - ${rep.id}</div>`
+  houseReps.appendChild(repName);
 }
 
 function findHouseRep(state) {
   getAllHouse().then(function (reps) {
+    houseReps.innerHTML = '';
     for (let rep of reps.results[0].members) {
       if (rep.state === state.toUpperCase()) {
         addRepName(rep);
@@ -258,6 +265,7 @@ function addRepDetails(rep) {
 function showRepDetails(n) {
   getSpecificHouseMember(n).then(function (id) {
     console.log(id);
+    houseReps.innerHTML = '';
     addRepDetails(id.results[0]);
   })
 }
