@@ -234,18 +234,26 @@ function showCandidateDetails(n) {
 }
 
 function addSocial(name) {
-  let candSocial = document.createElement("div");
+  let repSocial = document.createElement("div");
   social.innerHTML = "";
-  social.append(candSocial);
+  social.append(repSocial);
 
-  candSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
+  repSocial.innerHTML = `<div>Name: ${name.facebook_account}</div>`;
+}
+
+function addRepName(rep) {
+  let repName = document.createElement('div');
+  houseReps.append(repName);
+
+  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name}`
 }
 
 function findHouseRep(state) {
-  getAllHouse().then(function (all) {
-    for (let member of all.results[0].members) {
-      if (member.state === state.toUpperCase()) {
-        console.log(member);
+  getAllHouse().then(function (reps) {
+    for (let rep of reps.results[0].members) {
+      if (rep.state === state.toUpperCase()) {
+        // console.log(rep);
+        addRepName(rep);
       }
     }
   });
@@ -255,9 +263,9 @@ document.addEventListener("DOMContentLoaded", function () {
   query(".cand_id").addEventListener("keyup", function (e) {
     updateID(event.target.value);
   });
-  query(".state").addEventListener("change", function (e) {
-    fromState(event.target.value);
-  });
+  // query(".state").addEventListener("change", function (e) {
+  //   fromState(event.target.value);
+  // });
   query(".candidate").addEventListener("change", function (e) {
     candInfo(event.target.value);
   });
