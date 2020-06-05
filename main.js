@@ -250,11 +250,14 @@ function addRepDetails(rep) {
   repDetails.innerHTML = '';
   repDetails.append(repInfo);
 
-  repInfo.innerHTML = `<div>${rep.facebook_account}<div>`
+  repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}<div><br>
+  <div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
+  <div>DW_Nominate rating - ${rep.roles[0].dw_nominate}`
 }
 
 function showRepDetails(n) {
   getSpecificHouseMember(n).then(function (id) {
+    console.log(id);
     addRepDetails(id.results[0]);
   })
 }
