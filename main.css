@@ -34,3 +34,10 @@ input {
     margin: 20px;
     text-align: center;
 }
+
+.repInfo {
+    text-align: center;
+    border: dodgerblue;
+    border-style: groove;
+    padding: 20px;
+}

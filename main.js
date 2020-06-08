@@ -258,6 +258,7 @@ function addRepDetails(rep) {
   let repInfo = document.createElement('div');
   repDetails.innerHTML = '';
   repDetails.append(repInfo);
+  repInfo.classList.add("repInfo")
 
   repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}<div><br>
   <div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
