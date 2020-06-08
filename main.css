@@ -6,25 +6,3 @@
     display: flex;
     justify-content: space-evenly;
 }
-
-.politics {
-    width: 40%;
-}
-
-.map_box {
-    width: 40%;
-}
-
-#floating-panel {
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: 'Roboto','sans-serif';
-    line-height: 30px;
-    padding-left: 10px;
-  }
