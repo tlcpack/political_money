@@ -6,3 +6,31 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.politics {
+    width: 80%;
+}
+
+.state, .repDetail {
+    text-align: center;
+    margin: 15px;
+}
+
+input {
+    margin: 10px;
+}
+
+.houseReps {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.rep {
+    width: 60px;
+    border: 10px;
+    border-style: dotted;
+    padding: 50px;
+    margin: 20px;
+    text-align: center;
+}

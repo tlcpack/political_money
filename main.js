@@ -231,6 +231,7 @@ function addDonors(name) {
 function addRepName(rep) {
   let repName = document.createElement('div');
   houseReps.append(repName);
+  repName.classList.add('rep');
   const repId = rep.id;
 
   repName.onclick = function () {
