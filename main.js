@@ -229,23 +229,23 @@ function addDonors(name) {
 }
 
 function addRepName(rep) {
-  let repName = document.createElement('div');
+  let repName = document.createElement("div");
   houseReps.append(repName);
-  repName.classList.add('rep');
+  repName.classList.add("rep");
   const repId = rep.id;
 
   repName.onclick = function () {
     showRepDetails(repId);
   };
-
-  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - ${rep.id}</div>`
+  console.log(rep)
+  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - District: ${rep.district}</div>`;
   houseReps.appendChild(repName);
 }
 
 function findHouseRep(state) {
   getAllHouse().then(function (reps) {
-    houseReps.innerHTML = '';
-    repDetails.innerHTML = '';
+    houseReps.innerHTML = "";
+    repDetails.innerHTML = "";
     for (let rep of reps.results[0].members) {
       if (rep.state === state.toUpperCase()) {
         addRepName(rep);
@@ -255,22 +255,23 @@ function findHouseRep(state) {
 }
 
 function addRepDetails(rep) {
-  let repInfo = document.createElement('div');
-  repDetails.innerHTML = '';
+  let repInfo = document.createElement("div");
+  repDetails.innerHTML = "";
   repDetails.append(repInfo);
-  repInfo.classList.add("repInfo")
+  repInfo.classList.add("repInfo");
 
   repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}<div><br>
   <div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
-  <div>DW_Nominate rating - ${rep.roles[0].dw_nominate}`
+  <div>DW_Nominate rating - ${rep.roles[0].dw_nominate}</div><br>
+  <div>Votes with party: ${rep.roles[0].votes_with_party_pct}</div>`;
 }
 
 function showRepDetails(n) {
   getSpecificHouseMember(n).then(function (id) {
     console.log(id);
-    houseReps.innerHTML = '';
+    houseReps.innerHTML = "";
     addRepDetails(id.results[0]);
-  })
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
