@@ -44,4 +44,37 @@ input {
     border: dodgerblue;
     border-style: groove;
     padding: 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.repDetails {
+    perspective: 1000px;
+}
+
+.repDetails:hover .repInfo {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.front {
+    background-color: #bbb;
+    color: black;
+}
+
+.back {
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
 }
