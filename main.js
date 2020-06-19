@@ -261,7 +261,6 @@ function addRepDetails(rep) {
   repInfo.classList.add("repInfo");
 
   repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}</div><br><div class="card_container">
-  <div class="front">Partisan info</div>
   <div class="back"><div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
   <div>DW_Nominate rating - ${rep.roles[0].dw_nominate}</div><br>
   <div>Votes with party: ${rep.roles[0].votes_with_party_pct}</div></div></div>`;
