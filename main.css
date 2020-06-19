@@ -52,7 +52,7 @@ input {
     transform-style: preserve-3d;
 }
 
-/* .repDetails {
+.repDetails {
     perspective: 1000px;
 }
 
@@ -77,7 +77,7 @@ input {
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
-} */
+}
 
 .card_container {
     display: flex;
