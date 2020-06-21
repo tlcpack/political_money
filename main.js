@@ -143,7 +143,7 @@ function getSpecificHouseMember(n) {
     }
     return response.json();
   });
-  console.log(promise);
+  // console.log(promise);
   return promise;
 }
 
@@ -237,7 +237,12 @@ function addRepName(rep) {
   repName.onclick = function () {
     showRepDetails(repId);
   };
-  console.log(rep)
+  // console.log(rep)
+  const cook = getSpecificHouseMember(repId).then(function (id) {
+    const value = getCook(id.results[0]);
+    repName.innerHTML += `<div>${value}</div>`
+  })
+
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - District: ${rep.district}</div>`;
   houseReps.appendChild(repName);
 }
@@ -274,6 +279,18 @@ function showRepDetails(n) {
   });
 }
 
+function getRepDetails(n) {
+  getSpecificHouseMember(n).then(function (id) {
+    const value = getCook(id.results[0]);
+    console.log(value)
+    return value;
+  })
+}
+
+function getCook(id) {
+  const cook = id.roles[0].cook_pvi;
+  return cook;
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
