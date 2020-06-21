@@ -246,7 +246,7 @@ function addRepName(rep) {
 
   })
 
-  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - District: ${rep.district}</div>`;
+  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - District: ${rep.district}</div></br>`;
   houseReps.appendChild(repName);
 }
 

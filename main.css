@@ -24,10 +24,11 @@ input {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .rep {
-    width: 180px;
+    width: auto;
     border: 10px;
     border-style: dotted;
     padding: 50px;
