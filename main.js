@@ -238,9 +238,12 @@ function addRepName(rep) {
     showRepDetails(repId);
   };
   // console.log(rep)
-  const cook = getSpecificHouseMember(repId).then(function (id) {
-    const value = getCook(id.results[0]);
-    repName.innerHTML += `<div>Cook district rating: ${value}</div>`
+  getSpecificHouseMember(repId).then(function (id) {
+    const cook = getCook(id.results[0]);
+    const dw = getDW(id.results[0])
+    repName.innerHTML += `<div>Cook district rating: ${cook}</div></br>
+                          <div>DW rating: ${dw}`
+
   })
 
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - District: ${rep.district}</div>`;
@@ -288,6 +291,11 @@ function getRepDetails(n) {
 function getCook(id) {
   const cook = id.roles[0].cook_pvi;
   return cook;
+}
+
+function getDW(id) {
+  const dw = id.roles[0].dw_nominate;
+  return dw;
 }
 
 
