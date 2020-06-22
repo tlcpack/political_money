@@ -143,7 +143,7 @@ function getSpecificHouseMember(n) {
     }
     return response.json();
   });
-  console.log(promise);
+  // console.log(promise);
   return promise;
 }
 
@@ -232,13 +232,28 @@ function addRepName(rep) {
   let repName = document.createElement("div");
   houseReps.append(repName);
   repName.classList.add("rep");
+  if (rep.party === 'R') {
+    repName.classList.add("R");
+  } else if (rep.party === 'D') {
+    repName.classList.add("D");
+  }
+  
+  repName.classList.add("${repParty}");
   const repId = rep.id;
 
   repName.onclick = function () {
     showRepDetails(repId);
   };
   console.log(rep)
-  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} - District: ${rep.district}</div>`;
+  getSpecificHouseMember(repId).then(function (id) {
+    const cook = getCook(id.results[0]);
+    const dw = getDW(id.results[0])
+    repName.innerHTML += `<div>Cook district rating: ${cook}</div></br>
+                          <div>DW rating: ${dw}`
+
+  })
+
+  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
   houseReps.appendChild(repName);
 }
 
@@ -275,6 +290,21 @@ function showRepDetails(n) {
   });
 }
 
+function getRepDetails(n) {
+  getSpecificHouseMember(n).then(function (id) {
+    const value = getCook(id.results[0]);
+  })
+}
+
+function getCook(id) {
+  const cook = id.roles[0].cook_pvi;
+  return cook;
+}
+
+function getDW(id) {
+  const dw = id.roles[0].dw_nominate;
+  return dw;
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
