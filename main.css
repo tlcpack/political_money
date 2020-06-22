@@ -24,19 +24,23 @@ input {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .rep {
-    width: 180px;
+    width: auto;
     border: 10px;
-    border-style: dotted;
+    border-style: outset;
+    border-radius: 15px;
     padding: 50px;
     margin: 20px;
     text-align: center;
+    transition: all 1s ease;
 }
 
 .rep:hover {
-    background-color: aqua;
+    border-style: inset;
+    background-color: darkcyan;
 }
 
 .repInfo {
@@ -50,6 +54,14 @@ input {
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+}
+
+.D {
+    background-color: lightskyblue;
+}
+
+.R {
+    background-color: lightcoral;
 }
 
 /* .repDetails {
