@@ -234,10 +234,10 @@ function addRepName(rep) {
   repName.classList.add("rep");
   if (rep.party === 'R') {
     repName.classList.add("R");
-  }
-  else {
+  } else if (rep.party === 'D') {
     repName.classList.add("D");
   }
+  
   repName.classList.add("${repParty}");
   const repId = rep.id;
 
