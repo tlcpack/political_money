@@ -30,14 +30,17 @@ input {
 .rep {
     width: auto;
     border: 10px;
-    border-style: dotted;
+    border-style: outset;
+    border-radius: 15px;
     padding: 50px;
     margin: 20px;
     text-align: center;
+    transition: all 1s ease;
 }
 
 .rep:hover {
-    background-color: aqua;
+    border-style: inset;
+    background-color: darkcyan;
 }
 
 .repInfo {
