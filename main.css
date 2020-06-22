@@ -41,12 +41,13 @@ input {
 .rep:hover {
     border-style: inset;
     background-color: darkcyan;
+    cursor: pointer;
 }
 
 .repInfo {
     text-align: center;
-    border: dodgerblue;
-    border-style: groove;
+    border-style: outset;
+    border-radius: 15px;
     padding: 20px;
     position: relative;
     width: auto;
@@ -83,6 +84,7 @@ input {
 }
 
 .cardContainer .card .side {
+    backgruond: white;
     width: 100%;
     height: 100%;
     padding: 10px;
@@ -102,15 +104,13 @@ input {
 }
 
 .cardContainer .card .front {
+    background: white;
     text-align: center;
     line-height: 160px;
-    background-color: #7030a0;
     border: 3px solid white;
-    color: white;
 }
 
 .cardContainer .card .back {
-    background-color: #dbb2f9;
     border: 3px solid white;
     text-align: center;
     color: black;
