@@ -232,6 +232,13 @@ function addRepName(rep) {
   let repName = document.createElement("div");
   houseReps.append(repName);
   repName.classList.add("rep");
+  if (rep.party === 'R') {
+    repName.classList.add("R");
+  }
+  else {
+    repName.classList.add("D");
+  }
+  repName.classList.add("${repParty}");
   const repId = rep.id;
 
   repName.onclick = function () {
@@ -246,7 +253,7 @@ function addRepName(rep) {
 
   })
 
-  repName.innerHTML = `<div class="${rep.party}">${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
+  repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
   houseReps.appendChild(repName);
 }
 
