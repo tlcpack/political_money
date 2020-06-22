@@ -53,6 +53,14 @@ input {
     transform-style: preserve-3d;
 }
 
+.D {
+    background-color: lightskyblue;
+}
+
+.R {
+    background-color: lightcoral;
+}
+
 /* .repDetails {
     perspective: 1000px;
 }
