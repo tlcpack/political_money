@@ -65,6 +65,18 @@ input {
     background-color: lightcoral;
 }
 
+.dBorder {
+    border-width: 8px;
+    border-style: ridge;
+    border-color: blue;
+}
+
+.rBorder {
+    border-width: 8px;
+    border-style: ridge;
+    border-color: red;
+}
+
 .cardContainer {
      width: 400px;
      height: 200px;
@@ -73,7 +85,7 @@ input {
 }
 
 .cardContainer .card.flipped {
-    transform:rotatey(-180deg);
+    transform: rotatey(-180deg);
 }
 
 .cardContainer .card {
@@ -84,7 +96,7 @@ input {
 }
 
 .cardContainer .card .side {
-    backgruond: white;
+    background: white;
     width: 100%;
     height: 100%;
     padding: 10px;

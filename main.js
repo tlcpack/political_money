@@ -276,9 +276,9 @@ function addRepDetails(rep) {
   repInfo.classList.add("repInfo");
 
   if (rep.current_party === 'R') {
-    repInfo.classList.add("R");
+    repInfo.classList.add("rBorder");
   } else if (rep.current_party === 'D') {
-    repInfo.classList.add("D");
+    repInfo.classList.add("dBorder");
   }
 
   repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}</div><br><div class="cardContainer">
