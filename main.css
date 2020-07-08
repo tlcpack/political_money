@@ -190,3 +190,7 @@ input {
     padding-top: 5px;
     font-size: 16px;
 }
+
+.countdownwrapper {
+    text-align: center;
+}
