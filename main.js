@@ -275,10 +275,18 @@ function addRepDetails(rep) {
   repDetails.append(repInfo);
   repInfo.classList.add("repInfo");
 
-  repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}</div><br><div class="card_container">
-  <div class="back"><div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
+  if (rep.current_party === 'R') {
+    repInfo.classList.add("rBorder");
+  } else if (rep.current_party === 'D') {
+    repInfo.classList.add("dBorder");
+  }
+
+  repInfo.innerHTML = `<div>${rep.first_name} ${rep.last_name}</div><br><div class="cardContainer">
+  <div class="card" onclick="this.classList.toggle('flipped');">
+  <div class="side front">Partisan info</div>
+  <div class="side back"><div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
   <div>DW_Nominate rating - ${rep.roles[0].dw_nominate}</div><br>
-  <div>Votes with party: ${rep.roles[0].votes_with_party_pct}</div></div></div>`;
+  <div>Votes with party: ${rep.roles[0].votes_with_party_pct}</div></div></div></div>`;
 }
 
 function showRepDetails(n) {

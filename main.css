@@ -41,16 +41,17 @@ input {
 .rep:hover {
     border-style: inset;
     background-color: darkcyan;
+    cursor: pointer;
 }
 
 .repInfo {
     text-align: center;
-    border: dodgerblue;
-    border-style: groove;
+    border-style: outset;
+    border-radius: 15px;
     padding: 20px;
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
@@ -62,6 +63,70 @@ input {
 
 .R {
     background-color: lightcoral;
+}
+
+.dBorder {
+    border-width: 8px;
+    border-style: ridge;
+    border-color: blue;
+}
+
+.rBorder {
+    border-width: 8px;
+    border-style: ridge;
+    border-color: red;
+}
+
+.cardContainer {
+     width: 400px;
+     height: 200px;
+     position: relative;
+     margin: 50px auto;
+}
+
+.cardContainer .card.flipped {
+    transform: rotatey(-180deg);
+}
+
+.cardContainer .card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+}
+
+.cardContainer .card .side {
+    background: white;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 2;
+    backface-visibility: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    overflow: auto;
+}
+
+.cardContainer .card .back {
+    background: white;
+    color: black;
+    transform:rotatey(-180deg);
+}
+
+.cardContainer .card .front {
+    background: white;
+    text-align: center;
+    line-height: 160px;
+    border: 3px solid white;
+}
+
+.cardContainer .card .back {
+    border: 3px solid white;
+    text-align: center;
+    color: black;
+    padding-top: 50px;
 }
 
 /* .repDetails {
@@ -89,9 +154,11 @@ input {
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
-} */
+}
 
 .card_container {
     display: flex;
     justify-content: center;
 }
+
+/* should try this next: https://codepen.io/101Computing/pen/GbOJmE */
