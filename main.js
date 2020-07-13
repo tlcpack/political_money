@@ -238,7 +238,6 @@ function addRepName(rep) {
     repName.classList.add("D");
   }
   
-  repName.classList.add("${repParty}");
   const repId = rep.id;
 
   repName.onclick = function () {
