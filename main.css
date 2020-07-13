@@ -29,6 +29,7 @@ input {
 
 .rep {
     width: auto;
+    height: 95px;
     border: 10px;
     border-style: outset;
     border-radius: 15px;
@@ -36,6 +37,10 @@ input {
     margin: 20px;
     text-align: center;
     transition: all 1s ease;
+}
+
+.rep:last-child {
+    margin-bottom: 145px;
 }
 
 .rep:hover {
