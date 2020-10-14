@@ -14,6 +14,15 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+
+function safetyAnalysis(party, cook, dw) {
+  if (party == cook[0] && dw > 0) {
+    return 'Safe'
+  } else {
+    return 'Not safe'
+  }
+}
+
 function getAllHouse() {
   const promise = fetch(
     `https://api.propublica.org/congress/v1/116/house/members.json`,
@@ -67,17 +76,6 @@ function addRepName(rep) {
     showRepDetails(repId);
   };
   console.log(rep);
-
-  function safetyAnalysis(party, cook, dw) {
-    console.log(party);
-    console.log(cook[0]);
-    console.log(dw)
-    if (party == cook[0] && dw > 0) {
-      return 'Safe'
-    } else {
-      return 'Not safe'
-    }
-  }
 
   const safety = safetyAnalysis(rep.party, rep.cook_pvi, rep.dw_nominate);
 
