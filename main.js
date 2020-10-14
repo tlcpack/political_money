@@ -68,9 +68,23 @@ function addRepName(rep) {
   };
   console.log(rep);
 
+  function safetyAnalysis(party, cook, dw) {
+    console.log(party);
+    console.log(cook[0]);
+    console.log(dw)
+    if (party == cook[0] && dw > 0) {
+      return 'Safe'
+    } else {
+      return 'Not safe'
+    }
+  }
+
+  const safety = safetyAnalysis(rep.party, rep.cook_pvi, rep.dw_nominate);
+
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
   repName.innerHTML += `<div>Cook district rating: ${rep.cook_pvi}</div></br>
-  <div>DW rating: ${rep.dw_nominate}</div>`
+  <div>DW rating: ${rep.dw_nominate}</div></br>
+  <div>Analysis: ${safety}</div>`
   houseReps.appendChild(repName);
 }
 
