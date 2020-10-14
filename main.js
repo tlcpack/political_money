@@ -284,12 +284,12 @@ function addRepDetails(rep) {
   <div class="card" onclick="this.classList.toggle('flipped');">
   <div class="side front">Partisan info</div>
   <div class="side back"><div>Cook report District rating - ${rep.roles[0].cook_pvi}</div><br>
-  <div>DW_Nominate rating - ${rep.roles[0].dw_nominate}</div><br>
+  <div>DW_Nominate rating: ${rep.roles[0].dw_nominate}</div><br>
   <div>Votes with party: ${rep.roles[0].votes_with_party_pct}</div></div></div>
   <div class="card" onclick="this.classList.toggle('flipped');">
   <div class="side front">Contact info</div>
-  <div class="side back"><div>Phone</div><br>
-  <div>Email</div></div></div>`;
+  <div class="side back"><div>Phone: ${rep.roles[0].phone}</div><br>
+  <div>Twitter: ${rep.roles[0].twitter_account}</div></div></div>`;
 }
 
 function showRepDetails(n) {
