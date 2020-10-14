@@ -7,8 +7,6 @@ function query(selector) {
 }
 
 const cands = query(".cand_search");
-const candidate = query(".candidates");
-const stateRep = query(".stateRep");
 const houseReps = query(".houseReps");
 const repDetails = query(".repDetails");
 
@@ -68,16 +66,11 @@ function addRepName(rep) {
   repName.onclick = function () {
     showRepDetails(repId);
   };
-  console.log(rep)
-  getSpecificHouseMember(repId).then(function (id) {
-    const cook = getCook(id.results[0]);
-    const dw = getDW(id.results[0])
-    repName.innerHTML += `<div>Cook district rating: ${cook}</div></br>
-                          <div>DW rating: ${dw}`
-
-  })
+  console.log(rep);
 
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
+  repName.innerHTML += `<div>Cook district rating: ${rep.cook_pvi}</div></br>
+  <div>DW rating: ${rep.dw_nominate}</div>`
   houseReps.appendChild(repName);
 }
 
