@@ -70,6 +70,10 @@ input {
     background-color: lightcoral;
 }
 
+.unsure {
+    border-color: yellow;
+}
+
 .dBorder {
     border-width: 8px;
     border-style: ridge;

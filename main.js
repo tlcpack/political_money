@@ -88,6 +88,9 @@ function addRepName(rep) {
   console.log(rep);
 
   const safety = safetyAnalysis(rep.party, rep.cook_pvi, rep.dw_nominate);
+  if (safety == 'Unsure') {
+    repName.classList.add("unsure")
+  }
 
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
   repName.innerHTML += `<div>Cook district rating: ${rep.cook_pvi}</div></br>
