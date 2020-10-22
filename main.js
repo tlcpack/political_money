@@ -17,10 +17,15 @@ function numberWithCommas(x) {
 }
 
 function safetyAnalysis(party, cook, dw) {
-  if (party == cook[0] && dw > 0) {
-    return "Safe";
-  } else {
-    return "Not safe";
+  if (cook && dw) {
+    if (party == cook[0] && dw > 0) {
+      return "Safe";
+    } else {
+      return "Not safe";
+    }
+  }
+  else {
+    return "Unsure";
   }
 }
 
@@ -114,7 +119,7 @@ function createHouseList() {
     for (let rep of reps.results[0].members) {
       allHouse.push(rep);
     }
-    allHouse.sort((a, b) => (a.state > b.state) ? 1 : -1)
+    allHouse.sort((a, b) => (a.dw_nominate > b.dw_nominate) ? 1 : -1)
   });
 }
 
