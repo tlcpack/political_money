@@ -87,16 +87,26 @@ function addRepName(rep) {
   houseReps.appendChild(repName);
 }
 
-function findHouseRep(state) {
-  getAllHouse().then(function (reps) {
-    houseReps.innerHTML = "";
-    repDetails.innerHTML = "";
-    for (let rep of reps.results[0].members) {
-      if (rep.state === state.toUpperCase()) {
-        addRepName(rep);
-      }
+// function findHouseRep(state) {
+//   getAllHouse().then(function (reps) {
+//     houseReps.innerHTML = "";
+//     repDetails.innerHTML = "";
+//     for (let rep of reps.results[0].members) {
+      // if (rep.state === state.toUpperCase()) {
+      //   addRepName(rep);
+      // }
+//     }
+//   });
+// }
+function displayReps(state) {
+  houseReps.innerHTML = "";
+  repDetails.innerHTML = "";
+  for (let rep of allHouse) {
+    if (rep.state === state.toUpperCase()) {
+      addRepName(rep);
+      console.log(state);
     }
-  });
+  }
 }
 
 function createHouseList() {
@@ -105,7 +115,6 @@ function createHouseList() {
       allHouse.push(rep);
     }
     allHouse.sort((a, b) => (a.state > b.state) ? 1 : -1)
-    console.table(allHouse)
   });
 }
 
@@ -203,7 +212,7 @@ initializeClock("clockdiv", deadline);
 
 document.addEventListener("DOMContentLoaded", function () {
   query(".state").addEventListener("change", function (e) {
-    findHouseRep(e.target.value);
+    displayReps(e.target.value);
   });
   createHouseList()
 });
