@@ -18,9 +18,13 @@ function numberWithCommas(x) {
 
 function safetyAnalysis(party, cook, dw) {
   if (cook && dw) {
-    if (party == cook[0] && dw > 0) {
+    if (party == cook[0] && dw > 0 && party == 'R') {
       return "Safe";
-    } else {
+    } 
+    if (party == cook[0] && dw < 0 && party == 'D') {
+      return 'Safe';
+    }
+    else {
       return "Not safe";
     }
   }
