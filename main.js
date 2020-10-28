@@ -95,7 +95,7 @@ function addRepName(rep) {
   repName.innerHTML = `<div>${rep.first_name} ${rep.last_name} (${rep.party}) - District: ${rep.district}</div></br>`;
   repName.innerHTML += `<div>Cook district rating: ${rep.cook_pvi}</div></br>
   <div>DW rating: ${rep.dw_nominate}</div></br>
-  <div>Analysis: ${safety}</div>`;
+  <div><b><i>Analysis: ${safety}</i></b></div>`;
   houseReps.appendChild(repName);
 }
 
