@@ -71,6 +71,22 @@ function getSpecificHouseMember(n) {
   return promise;
 }
 
+function findMyRep(n) {
+  const promise = fetch(
+    `https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyChUdgQ331r8ZccICJ8JC0_DnC1hAxfQek&address=${n}`,
+    {
+      method: "GET",
+    }
+  ).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response.json();
+  });
+  console.log(promise);
+  return promise;
+}
+
 function addRepName(rep) {
   let repName = document.createElement("div");
   houseReps.append(repName);
@@ -224,6 +240,7 @@ initializeClock("clockdiv", deadline);
 
 document.addEventListener("DOMContentLoaded", function () {
   createHouseList();
+  findMyRep('6001 woodberry rd durham, nc 27707');
   query(".state").addEventListener("change", function (e) {
     console.log(e.target.value.toUpperCase());
     if (states.includes(e.target.value.toUpperCase())) {
