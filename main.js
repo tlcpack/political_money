@@ -230,8 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     displayReps(e.target.value);
     }
     else {
-      
-      repDetails.innerHTML = "<div>Please enter valid state abbreviation</div>"
+      repDetails.innerHTML = "<div style='color:red;display: flex;justify-content: space-evenly;'><i>Please enter valid state abbreviation</i></div>"
     }
   });
 });
