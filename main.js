@@ -177,6 +177,18 @@ function getDW(id) {
   const dw = id.roles[0].dw_nominate;
   return dw;
 }
+// map stuff
+
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidGF5bG9yY29va2UiLCJhIjoiY2s5bTF5Y21zMDM2aDNtb3FqajRyNHFjZCJ9.5eVM_B8yjostzY4X1NmdCw', {
+attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+maxZoom: 18,
+id: 'mapbox/streets-v11',
+tileSize: 512,
+zoomOffset: -1,
+accessToken: 'your.mapbox.access.token'
+}).addTo(mymap);
 
 // countdown functionality
 const deadline = "2020-11-3";

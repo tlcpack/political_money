@@ -2,6 +2,8 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+#mapid { height: 180px; }
+
 .wrapper {
     display: flex;
     justify-content: space-evenly;
