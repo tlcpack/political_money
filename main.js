@@ -4683,10 +4683,12 @@ function highlightFeature(e) {
   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
     layer.bringToFront();
   }
+  info.update(layer.feature.properties);
 }
 
 function resetHighlight(e) {
   geojson.resetStyle(e.target);
+  info.update();
 }
 
 function zoomToFeature(e) {
@@ -4702,6 +4704,21 @@ function onEachFeature(feature, layer) {
 }
 
 geojson = L.geoJson(statesData, { style: style, onEachFeature: onEachFeature }).addTo(map);
+
+let info = L.control();
+
+info.onAdd = function (map) {
+  this._div = L.DomUtil.create('div', 'info');
+  this.update();
+  return this._div;
+};
+
+info.update = function (props) {
+  this._div.innerHTML = '<h4>US Population Density</h4>' + (props ? '<b>' + props.name + '</b><br />' + props.density  + ' people / mi<sup>2</sup>'
+  : 'Hover over a state');
+};
+
+info.addTo(map);
 
 document.addEventListener("DOMContentLoaded", function () {
   createHouseList();
