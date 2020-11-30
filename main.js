@@ -4699,42 +4699,55 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
-    click: zoomToFeature
+    click: zoomToFeature,
   });
 }
 
-geojson = L.geoJson(statesData, { style: style, onEachFeature: onEachFeature }).addTo(map);
+geojson = L.geoJson(statesData, {
+  style: style,
+  onEachFeature: onEachFeature,
+}).addTo(map);
 
 let info = L.control();
 
 info.onAdd = function (map) {
-  this._div = L.DomUtil.create('div', 'info');
+  this._div = L.DomUtil.create("div", "info");
   this.update();
   return this._div;
 };
 
 info.update = function (props) {
-  this._div.innerHTML = '<h4>US Population Density</h4>' + (props ? '<b>' + props.name + '</b><br />' + props.density  + ' people / mi<sup>2</sup>'
-  : 'Hover over a state');
+  this._div.innerHTML =
+    "<h4>US Population Density</h4>" +
+    (props
+      ? "<b>" +
+        props.name +
+        "</b><br />" +
+        props.density +
+        " people / mi<sup>2</sup>"
+      : "Hover over a state");
 };
 
 info.addTo(map);
 
-let legend = L.control({position: 'bottomright'});
+let legend = L.control({ position: "bottomright" });
 
 legend.onAdd = function (map) {
-  var div = L.DomUtil.create('div', 'info legend'),
+  var div = L.DomUtil.create("div", "info legend"),
     grades = [0, 10, 20, 50, 100, 200, 500, 1000],
     labels = [];
 
   for (var i = 0; i < grades.length; i++) {
     div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+      '<i style="background:' +
+      getColor(grades[i] + 1) +
+      '"></i> ' +
+      grades[i] +
+      (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
   }
 
   return div;
-}
+};
 
 legend.addTo(map);
 
