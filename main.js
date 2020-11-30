@@ -4720,6 +4720,24 @@ info.update = function (props) {
 
 info.addTo(map);
 
+let legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+    labels = [];
+
+  for (var i = 0; i < grades.length; i++) {
+    div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+  }
+
+  return div;
+}
+
+legend.addTo(map);
+
 document.addEventListener("DOMContentLoaded", function () {
   createHouseList();
   query(".state").addEventListener("change", function (e) {
