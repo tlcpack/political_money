@@ -4568,13 +4568,16 @@ function displayReps(state) {
 
 function addRepToData() {
   getAllHouse().then(function (reps) {
+    let count = 0;
     for (let rep of reps.results[0].members) {
       for (let state of statesData.features) {
         if (state.properties.abbreviation == rep.state) {
-          console.log(state);
+          console.log(rep.first_name + " " + rep.last_name);
+          count++;
         }
       }
     }
+    console.log(count);
   });
 }
 
