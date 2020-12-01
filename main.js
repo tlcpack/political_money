@@ -4566,6 +4566,18 @@ function displayReps(state) {
   }
 }
 
+function addRepToData() {
+  getAllHouse().then(function (reps) {
+    for (let rep of reps.results[0].members) {
+      for (let state of statesData.features) {
+        if (state.properties.abbreviation == rep.state) {
+          console.log(state);
+        }
+      }
+    }
+  });
+}
+
 function createHouseList() {
   getAllHouse().then(function (reps) {
     for (let rep of reps.results[0].members) {
@@ -4754,6 +4766,7 @@ legend.onAdd = function (map) {
 
 document.addEventListener("DOMContentLoaded", function () {
   createHouseList();
+  addRepToData();
   query(".state").addEventListener("change", function (e) {
     console.log(e.target.value.toUpperCase());
     if (states.includes(e.target.value.toUpperCase())) {
