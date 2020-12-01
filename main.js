@@ -4723,7 +4723,7 @@ info.update = function (props) {
     (props
       ? "<b>" +
         props.name +
-        "</b><br />" +
+        "</b> (" + props.abbreviation + ")<br />" +
         props.density +
         " people / mi<sup>2</sup>"
       : "Hover over a state");
