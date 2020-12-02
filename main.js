@@ -2905,7 +2905,7 @@ const statesData = {
     {
       type: "Feature",
       id: "30",
-      properties: { name: "Montana", abbreviation: "MN", density: 6.858 },
+      properties: { name: "Montana", abbreviation: "MT", density: 6.858 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -4574,18 +4574,14 @@ function addRepArray() {
 
 function addRepToData() {
   getAllHouse().then(function (reps) {
-
     for (let rep of reps.results[0].members) {
       for (let state of statesData.features) {
         if (state.properties.abbreviation == rep.state) {
-          console.log(state)
-          // let count = 0;
-          // let key = ""
-          // console.log(rep.first_name + " " + rep.last_name);
-          // state.properties.
+          state.properties.representatives.push(rep)
         }
       }
     }
+  console.log(statesData);
   });
 }
 
@@ -4748,7 +4744,7 @@ info.update = function (props) {
         props.name +
         "</b> (" + props.abbreviation + ")<br />" +
         props.density +
-        " people / mi<sup>2</sup>"
+        " people / mi<sup>2</sup><br /> " + props.representatives.length
       : "Hover over a state");
 };
 
