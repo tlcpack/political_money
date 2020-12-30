@@ -2,6 +2,10 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .map { height: 480px; }
 
 .info {

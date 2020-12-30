@@ -4403,6 +4403,7 @@ function chooseState() {
   stateClass.classList.remove("hidden");
   mapClass.classList.add("hidden");
   mapClass.style.height = "0px";  
+  houseReps.innerHTML = "";
 }
 
 function chooseMap() {
@@ -4726,7 +4727,8 @@ function resetHighlight(e) {
 
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
-  displayReps(e.sourceTarget.feature.properties.abbreviation)
+  displayReps(e.sourceTarget.feature.properties.abbreviation);
+  houseReps.scrollIntoView({inline: "nearest"});
 }
 
 function onEachFeature(feature, layer) {
@@ -4763,7 +4765,7 @@ info.update = function (props) {
 
 function appendRepsToMap (arr, div) {
   for (let x of arr) {
-    div.innerHTML += x.first_name + " " + x.last_name + "<br />"
+    div.innerHTML += x.first_name + " " + x.last_name + " (" + x.party + ")" + " - " + x.district + "<br />"
   }
 }
 
