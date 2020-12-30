@@ -2,13 +2,57 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.map { height: 480px; }
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
 .wrapper {
     display: flex;
     justify-content: space-evenly;
 }
 
+.options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.options > div {
+    width: auto;
+    height: 35px;
+    border: 10px;
+    border-style: outset;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px;
+    text-align: center;
+    transition: all 1s ease;
+}
+
+.options > div:hover {
+    border-style: inset;
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+
+.hidden {
+    opacity: 0;
+}
+
 .politics {
     width: 80%;
+    text-align: center;
 }
 
 .state, .repDetail {
@@ -144,38 +188,28 @@ input {
     color: black;
     padding-top: 50px;
 }
-
-/* .repDetails {
-    perspective: 1000px;
-}
-
-.repDetails:hover .repInfo{
-    transform: rotateY(180deg);
-}
-
-.front, .back {
-    position: absolute;
-    width: 30%;
-    height: 30%;
-    -webkit-backface-visibility: hidden; 
-    backface-visibility: hidden;
-}
-
-.front {
-    background-color: #bbb;
-    color: black;
-}
-
-.back {
-    background-color: dodgerblue;
-    color: white;
-    transform: rotateY(180deg);
-}
-
-.card_container {
-    display: flex;
-    justify-content: center;
-}
-
 /* should try this next: https://codepen.io/101Computing/pen/GbOJmE */
 
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
