@@ -4728,7 +4728,7 @@ function resetHighlight(e) {
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
   displayReps(e.sourceTarget.feature.properties.abbreviation);
-  houseReps.scrollIntoView({inline: "nearest"});
+  mapClass.scrollIntoView({inline: "nearest"});
 }
 
 function onEachFeature(feature, layer) {
