@@ -4396,6 +4396,19 @@ const statesData = {
 const cands = query(".cand_search");
 const houseReps = query(".houseReps");
 const repDetails = query(".repDetails");
+const stateClass = query(".state")
+const mapClass = query(".map")
+
+function chooseState() {
+  stateClass.classList.remove("hidden");
+  mapClass.classList.add("hidden")
+}
+
+function chooseMap() {
+  mapClass.classList.remove("hidden");
+  stateClass.classList.add("hidden");
+  houseReps.innerHTML = "";
+}
 
 const states = [
   "AL",
@@ -4736,22 +4749,10 @@ info.onAdd = function (map) {
   return this._div;
 };
 
-// info.update = function (props) {
-//   this._div.innerHTML =
-//     "<h4>US Population Density</h4>" +
-//     (props
-//       ? "<b>" +
-//         props.name +
-//         "</b> (" + props.abbreviation + ")<br />" +
-//         props.density +
-//         " people / mi<sup>2</sup><br /> " + props.representatives.length
-//       : "Hover over a state");
-// };
-
 info.update = function (props) {
   if (props) {
-    this._div.innerHTML = "<p>Reps: </P><br />";
-    appendReps(props.representatives, this._div);
+    this._div.innerHTML = "<p>Reps: </p>";
+    appendRepsToMap(props.representatives, this._div);
   }
 
   else {
@@ -4759,7 +4760,7 @@ info.update = function (props) {
   }
 };
 
-function appendReps (arr, div) {
+function appendRepsToMap (arr, div) {
   for (let x of arr) {
     div.innerHTML += x.first_name + " " + x.last_name + "<br />"
   }

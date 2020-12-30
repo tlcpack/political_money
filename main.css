@@ -2,7 +2,7 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-#mapid { height: 480px; }
+.map { height: 480px; }
 
 .info {
     padding: 6px 8px;
@@ -22,8 +22,37 @@
     justify-content: space-evenly;
 }
 
+.options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.options > div {
+    width: auto;
+    height: 35px;
+    border: 10px;
+    border-style: outset;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px;
+    text-align: center;
+    transition: all 1s ease;
+}
+
+.options > div:hover {
+    border-style: inset;
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+
+.hidden {
+    opacity: 0;
+}
+
 .politics {
     width: 80%;
+    text-align: center;
 }
 
 .state, .repDetail {
@@ -159,39 +188,6 @@ input {
     color: black;
     padding-top: 50px;
 }
-
-/* .repDetails {
-    perspective: 1000px;
-}
-
-.repDetails:hover .repInfo{
-    transform: rotateY(180deg);
-}
-
-.front, .back {
-    position: absolute;
-    width: 30%;
-    height: 30%;
-    -webkit-backface-visibility: hidden; 
-    backface-visibility: hidden;
-}
-
-.front {
-    background-color: #bbb;
-    color: black;
-}
-
-.back {
-    background-color: dodgerblue;
-    color: white;
-    transform: rotateY(180deg);
-}
-
-.card_container {
-    display: flex;
-    justify-content: center;
-}
-
 /* should try this next: https://codepen.io/101Computing/pen/GbOJmE */
 
 .info {

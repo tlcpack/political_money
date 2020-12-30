@@ -7,30 +7,40 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
   </head>
 
   <body>
     <div class="wrapper">
       <div class="politics">
-        <p>
-          This site is under construction. It is looking at some detailed data from the ProPublica Congress API. It could be used by people to look up their reps and detailed analysis about their reps voting and ideology.
-        </p>
-        <div class="state">
-<br />Find candidates from a state:<br /><input
+        <h3>
+          Find information about your Member of Congress (using the ProPublica
+          API).
+        </h3>
+        <div class="options">
+          <div class="mapOption" onclick="chooseMap()">Find by map</div>
+          <div class="stateOption" onclick="chooseState()">Find by state entry</div>
+        </div>
+        <div class="state hidden">
+          <br />Find candidates from a state:<br /><input
             type="text"
             class="search_button"
             placeholder="Type in 2-letter state"
             autofocus
           /><button>Search</button>
         </div>
-        <div id="mapid"></div>
-        <span class="repDetails"></span>
+        <div id="mapid" class="map hidden"></div>
+        <div class="repDetails"></div>
 
         <div class="houseRep"></div>
         <div class="houseReps"></div>
