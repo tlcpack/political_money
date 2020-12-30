@@ -4401,10 +4401,12 @@ const mapClass = query(".map")
 
 function chooseState() {
   stateClass.classList.remove("hidden");
-  mapClass.classList.add("hidden")
+  mapClass.classList.add("hidden");
+  mapClass.style.height = "0px";  
 }
 
 function chooseMap() {
+  mapClass.style.height = "480px"; 
   mapClass.classList.remove("hidden");
   stateClass.classList.add("hidden");
   houseReps.innerHTML = "";
@@ -4544,7 +4546,6 @@ function addRepName(rep) {
   repName.onclick = function () {
     showRepDetails(repId);
   };
-  console.log(rep);
 
   const safety = safetyAnalysis(rep.party, rep.cook_pvi, rep.dw_nominate);
   if (safety == "Unsure") {
@@ -4594,7 +4595,6 @@ function addRepToData() {
         }
       }
     }
-  console.log(statesData);
   });
 }
 
@@ -4726,6 +4726,7 @@ function resetHighlight(e) {
 
 function zoomToFeature(e) {
   map.fitBounds(e.target.getBounds());
+  displayReps(e.sourceTarget.feature.properties.abbreviation)
 }
 
 function onEachFeature(feature, layer) {
