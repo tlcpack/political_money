@@ -4736,17 +4736,34 @@ info.onAdd = function (map) {
   return this._div;
 };
 
+// info.update = function (props) {
+//   this._div.innerHTML =
+//     "<h4>US Population Density</h4>" +
+//     (props
+//       ? "<b>" +
+//         props.name +
+//         "</b> (" + props.abbreviation + ")<br />" +
+//         props.density +
+//         " people / mi<sup>2</sup><br /> " + props.representatives.length
+//       : "Hover over a state");
+// };
+
 info.update = function (props) {
-  this._div.innerHTML =
-    "<h4>US Population Density</h4>" +
-    (props
-      ? "<b>" +
-        props.name +
-        "</b> (" + props.abbreviation + ")<br />" +
-        props.density +
-        " people / mi<sup>2</sup><br /> " + props.representatives.length
-      : "Hover over a state");
+  if (props) {
+    this._div.innerHTML = "<p>Reps: </P><br />";
+    appendReps(props.representatives, this._div);
+  }
+
+  else {
+    this._div.innerHTML = "Hover over a state"
+  }
 };
+
+function appendReps (arr, div) {
+  for (let x of arr) {
+    div.innerHTML += x.first_name + " " + x.last_name + "<br />"
+  }
+}
 
 info.addTo(map);
 
