@@ -4396,14 +4396,15 @@ const statesData = {
 const cands = query(".cand_search");
 const houseReps = query(".houseReps");
 const repDetails = query(".repDetails");
-const stateClass = query(".state")
-const mapClass = query(".map")
+const stateClass = query(".state");
+const mapClass = query(".map");
 
 function chooseState() {
   stateClass.classList.remove("hidden");
   mapClass.classList.add("hidden");
   mapClass.style.height = "0px";  
   houseReps.innerHTML = "";
+  repDetails.innerHTML = "";
 }
 
 function chooseMap() {
@@ -4411,6 +4412,7 @@ function chooseMap() {
   mapClass.classList.remove("hidden");
   stateClass.classList.add("hidden");
   houseReps.innerHTML = "";
+  repDetails.innerHTML = "";
 }
 
 const states = [
